@@ -1,0 +1,243 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="TheaterDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Play">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Author" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="PlayType" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Duration" Type="Int32" Nullable="false" />
+    <Property Name="AmountOfActs" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Repertoirs" Relationship="Self.FK_Repertoirs_Plays" FromRole="Plays" ToRole="Repertoirs" />
+    <NavigationProperty Name="TicketsSales" Relationship="Self.FK_TicketsSale_Plays" FromRole="Plays" ToRole="TicketsSale" />
+    <NavigationProperty Name="Workers" Relationship="Self.PlayWorkers" FromRole="Plays" ToRole="Workers" />
+  </EntityType>
+  <EntityType Name="Repertoir">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Play" Type="Int32" Nullable="false" />
+    <Property Name="DateOfPerformance" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="TimeOfPerformance" Type="Time" Nullable="false" Precision="7" />
+    <Property Name="TicketsSold" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Play1" Relationship="Self.FK_Repertoirs_Plays" FromRole="Repertoirs" ToRole="Plays" />
+    <NavigationProperty Name="RolesOfActorsOfRepertoirs" Relationship="Self.FK_RolesOfActorsOfRepertoir_Repertoirs" FromRole="Repertoirs" ToRole="RolesOfActorsOfRepertoir" />
+  </EntityType>
+  <EntityType Name="Role">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Actor" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Worker" Relationship="Self.FK_Roles_Workers" FromRole="Roles" ToRole="Workers" />
+    <NavigationProperty Name="RolesOfActorsOfRepertoirs" Relationship="Self.FK_RolesOfActorsOfRepertoir_Roles" FromRole="Roles" ToRole="RolesOfActorsOfRepertoir" />
+  </EntityType>
+  <EntityType Name="RolesOfActorsOfRepertoir">
+    <Key>
+      <PropertyRef Name="Actor" />
+      <PropertyRef Name="Role" />
+      <PropertyRef Name="Repertoire" />
+    </Key>
+    <Property Name="Actor" Type="Int32" Nullable="false" />
+    <Property Name="Role" Type="Int32" Nullable="false" />
+    <Property Name="Repertoire" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Repertoir" Relationship="Self.FK_RolesOfActorsOfRepertoir_Repertoirs" FromRole="RolesOfActorsOfRepertoir" ToRole="Repertoirs" />
+    <NavigationProperty Name="Role1" Relationship="Self.FK_RolesOfActorsOfRepertoir_Roles" FromRole="RolesOfActorsOfRepertoir" ToRole="Roles" />
+    <NavigationProperty Name="Worker" Relationship="Self.FK_RolesOfActorsOfRepertoir_Workers" FromRole="RolesOfActorsOfRepertoir" ToRole="Workers" />
+  </EntityType>
+  <EntityType Name="sysdiagram">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="TicketsSale">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Play" Type="Int32" Nullable="false" />
+    <Property Name="PlayDate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="PlayTime" Type="Time" Nullable="false" Precision="7" />
+    <Property Name="DateOfPurchase" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="TicketsBought" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Play1" Relationship="Self.FK_TicketsSale_Plays" FromRole="TicketsSale" ToRole="Plays" />
+  </EntityType>
+  <EntityType Name="Worker">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Surname" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="MiddleName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Position" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Rank" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="IsFired" Type="Boolean" />
+    <NavigationProperty Name="Roles" Relationship="Self.FK_Roles_Workers" FromRole="Workers" ToRole="Roles" />
+    <NavigationProperty Name="RolesOfActorsOfRepertoirs" Relationship="Self.FK_RolesOfActorsOfRepertoir_Workers" FromRole="Workers" ToRole="RolesOfActorsOfRepertoir" />
+    <NavigationProperty Name="Plays" Relationship="Self.PlayWorkers" FromRole="Workers" ToRole="Plays" />
+  </EntityType>
+  <Association Name="FK_Repertoirs_Plays">
+    <End Role="Plays" Type="Self.Play" Multiplicity="1" />
+    <End Role="Repertoirs" Type="Self.Repertoir" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Plays">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Repertoirs">
+        <PropertyRef Name="Play" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TicketsSale_Plays">
+    <End Role="Plays" Type="Self.Play" Multiplicity="1" />
+    <End Role="TicketsSale" Type="Self.TicketsSale" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Plays">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="TicketsSale">
+        <PropertyRef Name="Play" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_RolesOfActorsOfRepertoir_Repertoirs">
+    <End Role="Repertoirs" Type="Self.Repertoir" Multiplicity="1" />
+    <End Role="RolesOfActorsOfRepertoir" Type="Self.RolesOfActorsOfRepertoir" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Repertoirs">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="RolesOfActorsOfRepertoir">
+        <PropertyRef Name="Repertoire" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Roles_Workers">
+    <End Role="Workers" Type="Self.Worker" Multiplicity="1" />
+    <End Role="Roles" Type="Self.Role" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Workers">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Roles">
+        <PropertyRef Name="Actor" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_RolesOfActorsOfRepertoir_Roles">
+    <End Role="Roles" Type="Self.Role" Multiplicity="1" />
+    <End Role="RolesOfActorsOfRepertoir" Type="Self.RolesOfActorsOfRepertoir" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Roles">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="RolesOfActorsOfRepertoir">
+        <PropertyRef Name="Role" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_RolesOfActorsOfRepertoir_Workers">
+    <End Role="Workers" Type="Self.Worker" Multiplicity="1" />
+    <End Role="RolesOfActorsOfRepertoir" Type="Self.RolesOfActorsOfRepertoir" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Workers">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="RolesOfActorsOfRepertoir">
+        <PropertyRef Name="Actor" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="PlayWorkers">
+    <End Role="Plays" Type="Self.Play" Multiplicity="*" />
+    <End Role="Workers" Type="Self.Worker" Multiplicity="*" />
+  </Association>
+  <EntityContainer Name="TheaterDBEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Plays" EntityType="Self.Play" />
+    <EntitySet Name="Repertoirs" EntityType="Self.Repertoir" />
+    <EntitySet Name="Roles" EntityType="Self.Role" />
+    <EntitySet Name="RolesOfActorsOfRepertoirs" EntityType="Self.RolesOfActorsOfRepertoir" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+    <EntitySet Name="TicketsSales" EntityType="Self.TicketsSale" />
+    <EntitySet Name="Workers" EntityType="Self.Worker" />
+    <AssociationSet Name="FK_Repertoirs_Plays" Association="Self.FK_Repertoirs_Plays">
+      <End Role="Plays" EntitySet="Plays" />
+      <End Role="Repertoirs" EntitySet="Repertoirs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TicketsSale_Plays" Association="Self.FK_TicketsSale_Plays">
+      <End Role="Plays" EntitySet="Plays" />
+      <End Role="TicketsSale" EntitySet="TicketsSales" />
+    </AssociationSet>
+    <AssociationSet Name="FK_RolesOfActorsOfRepertoir_Repertoirs" Association="Self.FK_RolesOfActorsOfRepertoir_Repertoirs">
+      <End Role="Repertoirs" EntitySet="Repertoirs" />
+      <End Role="RolesOfActorsOfRepertoir" EntitySet="RolesOfActorsOfRepertoirs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Roles_Workers" Association="Self.FK_Roles_Workers">
+      <End Role="Workers" EntitySet="Workers" />
+      <End Role="Roles" EntitySet="Roles" />
+    </AssociationSet>
+    <AssociationSet Name="FK_RolesOfActorsOfRepertoir_Roles" Association="Self.FK_RolesOfActorsOfRepertoir_Roles">
+      <End Role="Roles" EntitySet="Roles" />
+      <End Role="RolesOfActorsOfRepertoir" EntitySet="RolesOfActorsOfRepertoirs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_RolesOfActorsOfRepertoir_Workers" Association="Self.FK_RolesOfActorsOfRepertoir_Workers">
+      <End Role="Workers" EntitySet="Workers" />
+      <End Role="RolesOfActorsOfRepertoir" EntitySet="RolesOfActorsOfRepertoirs" />
+    </AssociationSet>
+    <AssociationSet Name="PlayWorkers" Association="Self.PlayWorkers">
+      <End Role="Plays" EntitySet="Plays" />
+      <End Role="Workers" EntitySet="Workers" />
+    </AssociationSet>
+    <FunctionImport Name="sp_alterdiagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="version" Mode="In" Type="Int32" />
+      <Parameter Name="definition" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="sp_creatediagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="version" Mode="In" Type="Int32" />
+      <Parameter Name="definition" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="sp_dropdiagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(TheaterDBModel.sp_helpdiagramdefinition_Result)">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_helpdiagrams" ReturnType="Collection(TheaterDBModel.sp_helpdiagrams_Result)">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_renamediagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="new_diagramname" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_upgraddiagrams" />
+  </EntityContainer>
+  <ComplexType Name="sp_helpdiagramdefinition_Result">
+    <Property Type="Int32" Name="version" Nullable="true" />
+    <Property Type="Binary" Name="definition" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="sp_helpdiagrams_Result">
+    <Property Type="String" Name="Database" Nullable="true" MaxLength="128" />
+    <Property Type="String" Name="Name" Nullable="false" MaxLength="128" />
+    <Property Type="Int32" Name="ID" Nullable="false" />
+    <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
+    <Property Type="Int32" Name="OwnerID" Nullable="false" />
+  </ComplexType>
+</Schema>

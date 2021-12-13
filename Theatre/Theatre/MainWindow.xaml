@@ -1,0 +1,48 @@
+﻿<Window x:Class="Theatre.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Theatre"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="600" Width="800" WindowStartupLocation="CenterScreen">
+    <Grid>
+        
+        <Grid.RowDefinitions>
+            
+            <RowDefinition Height="0.5*"/>
+            <RowDefinition Height="4*"/>
+            <RowDefinition Height="0.3*"/>
+            
+        </Grid.RowDefinitions>
+        
+        <Grid Grid.Row="0" Background="Coral">
+            
+            <Button x:Name="Back"
+                    Background="Transparent"
+                    BorderBrush="Transparent"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Center"
+                    Click="Back_Click">
+                <Image Source="/Resources/menu.png"/>
+            </Button>
+            
+            <TextBlock Text="Театр"
+                       FontSize="32px"
+                       Grid.Row="0"
+                       FontWeight="Bold"
+                       VerticalAlignment="Center"
+                       HorizontalAlignment="Center"
+                       FontFamily="Segoe Script"/>
+            
+        </Grid>
+
+        <Frame x:Name="MainFrame"
+               Grid.Row="1"
+               ContentRendered="MainFrame_ContentRendered"
+               NavigationUIVisibility="Hidden"/>
+        
+        <Grid Grid.Row="2" Background="Coral"/>
+        
+    </Grid>
+</Window>

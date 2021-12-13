@@ -1,0 +1,96 @@
+﻿<Page x:Class="Theatre.Pages.AuthPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Theatre.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="AuthPage">
+
+    <Grid>
+        <Grid>
+            <TextBlock
+            x:Name="txtWelcome"
+            Text="Добро пожаловать! Пожалуйста авторизируйтесь в системе"
+            TextWrapping="WrapWithOverflow"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Top"
+            FontFamily="Segoe Script"
+            FontSize="36"
+            Margin="0 50 0 0"/>
+
+            <TextBlock
+            x:Name="txtBlockLogin"
+            FontFamily="Segoe Script"
+            Text="Логин:"
+            FontSize="24"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center"
+            Margin="0 0 300 0"/>
+
+            <TextBlock
+            x:Name="txtBlockPassword"
+            FontFamily="Segoe Script"
+            Text="Пароль:"
+            FontSize="24"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center"
+            Margin="0 100 300 0"/>
+
+            <TextBox
+            x:Name="txtLogin"
+            Width="300"
+            Height="35"
+            FontSize="24"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center"
+            Margin="100 8 0 0"/>
+
+            <TextBox
+            x:Name="txtPassword"
+            Width="300"
+            Height="35"
+            FontSize="24"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center"
+            Margin="100 108 0 0"/>
+
+            <Button
+            x:Name="btnAuth"
+            Style="{StaticResource screenButtonStyle}"
+            FontFamily="Segoe Script"
+            Content="Войти"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Bottom"
+            Click="btnAuth_Click"
+            Margin="0 0 195 80"/>
+
+            <Button
+            x:Name="btnReg"
+            Style="{StaticResource screenButtonStyle}"
+            FontFamily="Segoe Script"
+            Content="Регистрация"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Bottom"
+            Click="btnReg_Click"
+            Margin="205 0 0 80"/>
+
+            <TextBlock
+            x:Name="txtBlockAuthWelcome"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center"
+            FontSize="36"
+            Visibility="Hidden"
+            TextWrapping="WrapWithOverflow"/>
+
+            <TextBlock
+            x:Name="txtBlockAccountMoney"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Bottom"
+            FontSize="24"
+            Visibility="Hidden"
+            Margin="0 0 0 30"/>
+        </Grid>
+    </Grid>
+</Page>

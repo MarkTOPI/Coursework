@@ -1,0 +1,83 @@
+﻿<Page x:Class="Theatre.Pages.PersonalAccountingPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Theatre.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="PersonalAccountingPage">
+
+    <Grid>
+        <Grid.RowDefinitions>
+
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="0.15*"/>
+
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            
+        </Grid.ColumnDefinitions>
+
+        <DataGrid x:Name="DGridPersonal" Grid.ColumnSpan="3" Grid.Row="0" AutoGenerateColumns="False">
+
+            <DataGrid.Columns>
+
+                <DataGridTextColumn
+                    Header="Фамилия"
+                    Binding="{Binding Client}"
+                    Width="*"/>
+
+                <DataGridTextColumn
+                    Header="Имя"
+                    Binding="{Binding Account}"
+                    Width="*"/>
+
+                <DataGridTextColumn
+                    Header="Отчество"
+                    Binding="{Binding TransactionType}"
+                    Width="*"/>
+
+                <DataGridTextColumn
+                    Header="Должность"
+                    Binding="{Binding Deposit_Card}"
+                    Width="*"/>
+
+                <DataGridTextColumn
+                    Header="Звание"
+                    Binding="{Binding TransactionSum}"
+                    Width="*"/>
+
+                <DataGridTextColumn
+                    Header="Уволен"
+                    Binding="{Binding DateOfTransaction}"
+                    Width="*"/>
+
+            </DataGrid.Columns>
+
+        </DataGrid>
+        
+        <Button Content="Добавить"
+                FontFamily="Segoe Script"
+                Style="{StaticResource screenButtonStyle}"
+                Grid.Row="1"
+                Grid.Column="0"/>
+        
+        <Button Content="Изменить"
+                FontFamily="Segoe Script"
+                Style="{StaticResource screenButtonStyle}"
+                Grid.Row="1"
+                Grid.Column="1"/>
+        
+        <Button Content="Удалить"
+                FontFamily="Segoe Script"
+                Style="{StaticResource screenButtonStyle}"
+                Grid.Row="1"
+                Grid.Column="2"/>
+    </Grid>
+</Page>

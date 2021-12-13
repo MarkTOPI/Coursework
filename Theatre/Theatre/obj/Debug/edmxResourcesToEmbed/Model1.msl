@@ -1,0 +1,114 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="Хранилище TheaterDBModelContainer" CdmEntityContainer="TheaterDBEntities">
+    <EntitySetMapping Name="Plays">
+      <EntityTypeMapping TypeName="TheaterDBModel.Play">
+        <MappingFragment StoreEntitySet="Plays">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Author" ColumnName="Author" />
+          <ScalarProperty Name="PlayType" ColumnName="PlayType" />
+          <ScalarProperty Name="Duration" ColumnName="Duration" />
+          <ScalarProperty Name="AmountOfActs" ColumnName="AmountOfActs" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Repertoirs">
+      <EntityTypeMapping TypeName="TheaterDBModel.Repertoir">
+        <MappingFragment StoreEntitySet="Repertoirs">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Play" ColumnName="Play" />
+          <ScalarProperty Name="DateOfPerformance" ColumnName="DateOfPerformance" />
+          <ScalarProperty Name="TimeOfPerformance" ColumnName="TimeOfPerformance" />
+          <ScalarProperty Name="TicketsSold" ColumnName="TicketsSold" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Roles">
+      <EntityTypeMapping TypeName="TheaterDBModel.Role">
+        <MappingFragment StoreEntitySet="Roles">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Actor" ColumnName="Actor" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="RolesOfActorsOfRepertoirs">
+      <EntityTypeMapping TypeName="TheaterDBModel.RolesOfActorsOfRepertoir">
+        <MappingFragment StoreEntitySet="RolesOfActorsOfRepertoir">
+          <ScalarProperty Name="Actor" ColumnName="Actor" />
+          <ScalarProperty Name="Role" ColumnName="Role" />
+          <ScalarProperty Name="Repertoire" ColumnName="Repertoire" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sysdiagrams">
+      <EntityTypeMapping TypeName="TheaterDBModel.sysdiagram">
+        <MappingFragment StoreEntitySet="sysdiagrams">
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+          <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TicketsSales">
+      <EntityTypeMapping TypeName="TheaterDBModel.TicketsSale">
+        <MappingFragment StoreEntitySet="TicketsSale">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Play" ColumnName="Play" />
+          <ScalarProperty Name="PlayDate" ColumnName="PlayDate" />
+          <ScalarProperty Name="PlayTime" ColumnName="PlayTime" />
+          <ScalarProperty Name="DateOfPurchase" ColumnName="DateOfPurchase" />
+          <ScalarProperty Name="TicketsBought" ColumnName="TicketsBought" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Workers">
+      <EntityTypeMapping TypeName="TheaterDBModel.Worker">
+        <MappingFragment StoreEntitySet="Workers">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Surname" ColumnName="Surname" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="MiddleName" ColumnName="MiddleName" />
+          <ScalarProperty Name="Position" ColumnName="Position" />
+          <ScalarProperty Name="Rank" ColumnName="Rank" />
+          <ScalarProperty Name="IsFired" ColumnName="IsFired" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="PlayWorkers" TypeName="TheaterDBModel.PlayWorkers" StoreEntitySet="PlayWorkers">
+      <EndProperty Name="Plays">
+        <ScalarProperty Name="ID" ColumnName="Play" />
+      </EndProperty>
+      <EndProperty Name="Workers">
+        <ScalarProperty Name="ID" ColumnName="Worker" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <FunctionImportMapping FunctionImportName="sp_alterdiagram" FunctionName="Хранилище TheaterDBModel.sp_alterdiagram" />
+    <FunctionImportMapping FunctionImportName="sp_creatediagram" FunctionName="Хранилище TheaterDBModel.sp_creatediagram" />
+    <FunctionImportMapping FunctionImportName="sp_dropdiagram" FunctionName="Хранилище TheaterDBModel.sp_dropdiagram" />
+    <FunctionImportMapping FunctionImportName="sp_helpdiagramdefinition" FunctionName="Хранилище TheaterDBModel.sp_helpdiagramdefinition">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="TheaterDBModel.sp_helpdiagramdefinition_Result">
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_helpdiagrams" FunctionName="Хранилище TheaterDBModel.sp_helpdiagrams">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="TheaterDBModel.sp_helpdiagrams_Result">
+          <ScalarProperty Name="Database" ColumnName="Database" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Owner" ColumnName="Owner" />
+          <ScalarProperty Name="OwnerID" ColumnName="OwnerID" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="Хранилище TheaterDBModel.sp_renamediagram" />
+    <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="Хранилище TheaterDBModel.sp_upgraddiagrams" />
+  </EntityContainerMapping>
+</Mapping>
